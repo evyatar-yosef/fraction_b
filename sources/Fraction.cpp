@@ -58,13 +58,24 @@ namespace ariel
         return num;
     }
 
-    void Fraction ::chekOverflow(long numerator, long denominator) const
+void Fraction::chekOverflow(long numerator, long denominator) const
+{
+    constexpr long INT_MAX_L = static_cast<long>(std::numeric_limits<int>::max());
+    constexpr long INT_MIN_L = static_cast<long>(std::numeric_limits<int>::min());
+    
+    if (numerator < INT_MIN_L || numerator > INT_MAX_L || denominator < INT_MIN_L || denominator > INT_MAX_L)
     {
-        if (denominator < INT_MIN || numerator < INT_MIN || numerator > INT_MAX || denominator > INT_MAX)
-        {
-            throw std::overflow_error("The numerator or the denominator are too large or small");
-        }
+        throw std::overflow_error("The numerator or the denominator are too large or small");
     }
+}
+
+    // void Fraction ::chekOverflow(long numerator, long denominator) const
+    // {
+    //     if (denominator < INT_MIN || numerator < INT_MIN || numerator > INT_MAX || denominator > INT_MAX)
+    //     {
+    //         throw std::overflow_error("The numerator or the denominator are too large or small");
+    //     }
+    // }
 
     int Fraction::getNumerator() const
     {
